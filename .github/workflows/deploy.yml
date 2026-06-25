@@ -47,12 +47,12 @@ jobs:
         docker push $ECR_REGISTRY/innovatech-backend:$IMAGE_TAG
         docker push $ECR_REGISTRY/innovatech-backend:latest
         
-        # 2. Build y Push de Back Despachos (Usamos la url de innovatech-db para cumplir con el tercer ECR creado por Terraform)
-        docker build -t $ECR_REGISTRY/innovatech-db:$IMAGE_TAG ./back-despachos-springboot/api-rest-despacho
-        docker build -t $ECR_REGISTRY/innovatech-db:latest ./back-despachos-springboot/api-rest-despacho
+        # 2. Build y Push de Back Despachos (Cambiado a 'back-bespachos-springboot')
+        docker build -t $ECR_REGISTRY/innovatech-db:$IMAGE_TAG ./back-bespachos-springboot/api-rest-despacho
+        docker build -t $ECR_REGISTRY/innovatech-db:latest ./back-bespachos-springboot/api-rest-despacho
         docker push $ECR_REGISTRY/innovatech-db:$IMAGE_TAG
         docker push $ECR_REGISTRY/innovatech-db:latest
-        
+
         # 3. Build y Push de Front Despacho (Mapeado a innovatech-frontend)
         docker build -t $ECR_REGISTRY/innovatech-frontend:$IMAGE_TAG ./front-despacho
         docker build -t $ECR_REGISTRY/innovatech-frontend:latest ./front-despacho
