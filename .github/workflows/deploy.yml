@@ -53,7 +53,7 @@ jobs:
         docker push $ECR_REGISTRY/innovatech-db:$IMAGE_TAG
         docker push $ECR_REGISTRY/innovatech-db:latest
 
-        # 3. Build y Push de Front Despacho (Mapeado a innovatech-frontend)
+        # 3. Build y Push de Front Despacho Actualizado Multi-Stage
         docker build -t $ECR_REGISTRY/innovatech-frontend:$IMAGE_TAG ./front-despacho
         docker build -t $ECR_REGISTRY/innovatech-frontend:latest ./front-despacho
         docker push $ECR_REGISTRY/innovatech-frontend:$IMAGE_TAG
