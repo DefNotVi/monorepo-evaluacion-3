@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-despacho
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-despacho
+  template:
+    metadata:
+      labels:
+        app: back-despacho
+    spec:
+      containers:
+      - name: back-despacho
+        image: 306299936055.dkr.ecr.us-east-1.amazonaws.com/innovatech-db:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080 # Puerto estándar de Spring Boot
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-despacho-service
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: back-despacho
