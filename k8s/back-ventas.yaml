@@ -18,7 +18,18 @@ spec:
         image: 306299936055.dkr.ecr.us-east-1.amazonaws.com/innovatech-backend:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8081 # Ajustar si expone otro puerto
+        - containerPort: 8080 # <-- CAMBIADO A 8080 (Puerto correspondiente a Ventas)
+        env:                  # <-- BLOQUE DE VARIABLES INYECTADO
+        - name: DB_ENDPOINT
+          value: "mysql-service"
+        - name: DB_PORT
+          value: "3306"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "root"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "innovatech2026"
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://mysql-service:3306/innovatech?allowPublicKeyRetrieval=true&useSSL=false"
         resources:
           limits:
             cpu: "500m"
@@ -35,8 +46,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8081
-    targetPort: 8081
+  - port: 8080       # <-- CAMBIADO A 8080
+    targetPort: 8080 # <-- CAMBIADO A 8080
   selector:
     app: back-ventas
 ---
@@ -58,4 +69,4 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50 # Cumple la pauta: umbral justificado al 50% por seguridad
+        averageUtilization: 50

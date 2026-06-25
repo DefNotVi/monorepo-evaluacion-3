@@ -18,7 +18,18 @@ spec:
         image: 306299936055.dkr.ecr.us-east-1.amazonaws.com/innovatech-db:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080 # Puerto estándar de Spring Boot
+        - containerPort: 8081 # <--- CAMBIADO A 8081 (Como pide tu Spring Boot)
+        env:
+        - name: DB_ENDPOINT
+          value: "mysql-service"
+        - name: DB_PORT
+          value: "3306"
+        - name: SPRING_DATASOURCE_USERNAME
+          value: "root"
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: "innovatech2026"
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:mysql://mysql-service:3306/innovatech?allowPublicKeyRetrieval=true&useSSL=false"
         resources:
           limits:
             cpu: "500m"
@@ -35,7 +46,7 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 8081       # <--- CAMBIADO A 8081
+    targetPort: 8081 # <--- CAMBIADO A 8081
   selector:
     app: back-despacho
