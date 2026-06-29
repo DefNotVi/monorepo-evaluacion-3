@@ -5,8 +5,8 @@
 
 ## Integrantes
 
-- Nombre Integrante 1
-- Nombre Integrante 2
+- Vicente Escobar
+- Criastian Ceballos
 
 ---
 
